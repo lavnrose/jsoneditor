@@ -1718,8 +1718,15 @@ export class Node {
           // Iterate all enum values and add them as options
           for (let i = 0; i < this.enum.length; i++) {
             this.dom.select.option = document.createElement('option')
-            this.dom.select.option.value = this.enum[i]
-            this.dom.select.option.innerHTML = this.enum[i]
+            if(this["enum"][i].text) {
+                this.dom.select.option.text = this.enum[i].text
+                this.dom.select.option.value = this.enum[i].value
+                this.dom.select.option.innerHTML = this.enum[i].value
+             } else {
+                this.dom.select.option.value = this.enum[i]
+                this.dom.select.option.innerHTML = this.enum[i]
+            }
+            
             if (this.dom.select.option.value === this.value) {
               this.dom.select.option.selected = true
             }

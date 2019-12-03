@@ -894,7 +894,7 @@ export function improveSchemaError (error) {
   if (error.keyword === 'enum' && Array.isArray(error.schema)) {
     let enums = error.schema
     if (enums) {
-      enums = enums.map(value => JSON.stringify(value))
+      enums = enums.map(value => (value.value) ? JSON.stringify(value.value) : JSON.stringify(value))
 
       if (enums.length > 5) {
         const more = ['(' + (enums.length - 5) + ' more...)']
